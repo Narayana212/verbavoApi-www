@@ -6,6 +6,7 @@ import { Input } from "./ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { convertSpeech } from "@/actions";
 import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 const Demo = () => {
   const [message, setMessage] = useState<string>(
@@ -56,10 +57,13 @@ const Demo = () => {
         <div className="h-32 mt-4 rounded-lg border-2 border-dashed border-zinc-300 text-sm flex items-center justify-center">
           {successData ? (
             <div className="flex flex-col items-center text-center">
-              <audio  controls src={successData.url.url}/>
-
+              <audio controls src={successData.url.url} />
 
               <p className="text-sm mt-5 text-zinc-700">{successData.text}</p>
+            </div>
+          ) : isPending ? (
+            <div className="">
+              <Loader2 className="w-4 h-4 animate-spin" />
             </div>
           ) : (
             <p className="text-zinc-700">Results will be shown here</p>
