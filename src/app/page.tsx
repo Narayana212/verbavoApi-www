@@ -55,11 +55,11 @@ export default function Home() {
           <div className="w-full flex flex-col">
             <div className="flex justify-center text-center">
               <h2 className="font-heading text-5xl  text-gray-50 lg:text-6xl font-bold leading-tight text-balance sm:leading-none tracking-tight">
-                "Enhance audio{" "}
+              &quot;Enhance audio{" "}
                 <span className="bg-[#FCF3E4] text-[#65372A] font-scary px-3">
                   conversion
                 </span>{" "}
-                with Verbavo API"
+                with Verbavo API&quot;
               </h2>
             </div>
             <p className="text-center mx-auto mt-12 text-lg max-w-xl text-balance text-[#FCF3E4]">
