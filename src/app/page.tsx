@@ -1,113 +1,145 @@
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Check, Star } from "lucide-react";
+import Demo from "@/components/demo";
+import { Icons } from "@/components/icons";
+import YoutubePlayer from "@/components/youtube-player";
+import CodeSection from "@/components/code-section";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="bg-[#FCF3E4]  ">
+      <div className="relative overflow-hidden">
+        <div className="mx-auto max-w-7xl pb-24 pt-10 sm:grid lg:grid-cols-2 sm:pb-32 lg:gap-x-8 lg:px-8 lg:pt-32 lg:pb-52">
+          <div className="px-6 lg:px-0 lg:pt-4">
+            <div className="mx-auto max-w-lg text-center sm:text-left flex flex-col items-center lg:items-start">
+              <h1
+                className={cn(
+                  "relative tracking-tight sm:text-left mt-10 font-bold !leading-[4rem] text-[#65372A] text-5xl md:text-7xl"
+                )}
+              >
+                <span className="whitespace-nowrap">Verbavo</span>
+                API
+              </h1>
+              <p className="mt-8 text-lg lg:pr-10 text-center lg:text-left text-balance md:text-wrap">
+                Convert audio to speech with Verbavo API. Easily process audio
+                files and customize the output speech according to your needs.
+              </p>
+              <ul className="mt-8 space-y-2 font-medium flex flex-col items-center sm:items-start">
+                <div className="space-y-2">
+                  <li className="flex gap-1.5 items-center text-left">
+                    <Check className="h-5 w-5 shrink-0 text-[#65372A]" />{" "}
+                    Process audio files to chosen speech format
+                  </li>
+                  <li className="flex gap-1.5 items-center">
+                    <Check className="h-5 w-5 shrink-0 text-[#65372A]" />{" "}
+                    Customizable speech output options
+                  </li>
+                  <li className="flex gap-1.5 items-center">
+                    <Check className="h-5 w-5 shrink-0 text-[#65372A]" /> Easy
+                    integration into your applications
+                  </li>
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div className="relative px-8 sm:px-16 md:px-0 mt-28 md:mx-auto md:max-w-xl w-full lg:mx-0 lg:mt-20">
+            <Demo />
+          </div>
         </div>
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
       </div>
+      <section className="bg-[#65372A] px-4">
+        <div className="mx-auto max-w-6xl gap-6 pb-24 pt-20 sm:pb-32 lg:gap-x-8 lg:px-8 lg:py-40">
+          <div className="w-full flex flex-col">
+            <div className="flex justify-center text-center">
+              <h2 className="font-heading text-5xl  text-gray-50 lg:text-6xl font-bold leading-tight text-balance sm:leading-none tracking-tight">
+                "Enhance audio{" "}
+                <span className="bg-[#FCF3E4] text-[#65372A] font-scary px-3">
+                  conversion
+                </span>{" "}
+                with Verbavo API"
+              </h2>
+            </div>
+            <p className="text-center mx-auto mt-12 text-lg max-w-xl text-balance text-[#FCF3E4]">
+              <span className="font-semibold">Convert audio efficiently.</span>{" "}
+              Simplify audio conversion tasks with Verbavo API, making your
+              application more versatile.
+            </p>
+            <Icons.arrow className="h-60 -mt-4 text-[#FCF3E4] fill-zinc-400 pointer-events-none select-none" />
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
+            <p className="mt-6 text-[#FCF3E4]  sm:mt-12 z-10 text-center mx-auto text-3xl font-semibold">
+              Optimize audio processing with Verbavo API...
+            </p>
+            <div className="grid gap-40 sm:grid-cols-2 sm:gap-16 max-w-3xl mx-auto mt-40 text-center">
+              <div className="relative z-10">
+                <div className="absolute -z-10 left-1/2 -translate-x-1/2 -top-[90px]">
+                  <img
+                    alt="shocked-emoji"
+                    src="/shocked-emoji.png"
+                    className="h-24 relative -z-10 select-none"
+                  />
+                </div>
+                <p className="font-semibold mt-2 text-[#FCF3E4] text-lg">
+                  ...streamlines audio tasks
+                </p>
+                <p className="mt-2 text-white text-balance">
+                  Optimize audio conversion processes, improving workflow
+                  efficiency.
+                </p>
+              </div>
+              <div className="relative z-10">
+                <div className="absolute -z-10 left-1/2 -translate-x-1/2 -top-[90px]">
+                  <img
+                    alt="swear-emoji"
+                    src="/happ.webp"
+                    className="relative -z-10 h-24 select-none"
+                  />
+                </div>
+                <p className="font-semibold mt-2 text-[#FCF3E4] text-lg">
+                  ...enhances user experience
+                </p>
+                <p className="mt-2 text-white text-balance">
+                  Deliver a seamless audio conversion experience to users.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id='video-demo' className='bg-[#FCF3E4] '>
+        <div className='mx-auto max-w-6xl gap-6 pb-24 pt-10 sm:pb-32 lg:gap-x-8 lg:px-8 lg:py-40'>
+          <h2 className='mx-auto text-balance text-5xl sm:text-6xl text-center font-bold leading-[4.25rem] tracking-tight max-w-2xl text-slate-900'>
+            See Verbavo API in <span className='px-2 bg-[#65372A] text-[#FCF3E4]'>action</span>
           </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
+          <p className='text-center mx-auto mt-12 text-lg max-w-xl text-balance'>
+            <span className='font-semibold'>
+              Simplify audio conversion with Verbavo API!
+            </span>{' '}
+            Watch how Verbavo API processes audio files efficiently.
           </p>
-        </a>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+          <div className='relative mx-4 rounded-xl aspect-video md:mx-auto max-w-4xl mt-12 bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:rounded-2xl lg:p-4'>
+            <YoutubePlayer />
+            <div
+              aria-hidden='true'
+              className='absolute -left-52 top-1/4 z-10 select-none'>
+              <img alt='3-min-demo' src='/3mindemo.png'  />
+            </div>
+          </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          <div
+            id='api'
+            className='w-full flex flex-col items-center mt-12 px-4'>
+            <p className='font-bold text-xl my-4'>Get started with Verbavo API</p>
+            <div className='relative max-w-2xl w-full text-left p-5 bg-[#1e1e1e] rounded-xl shadow'>
+              <CodeSection />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
