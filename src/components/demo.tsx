@@ -42,7 +42,7 @@ const Demo = () => {
       const formData = new FormData();
       const mp3File = new File([message], "audio.mp3", { type: "audio/mp3" })
       formData.append("file", mp3File, "audio.mp3");
-      const response = await fetch("/api/upload", {
+      const response = await fetch("/api/upload/", {
         method: "POST",
         body: formData,
       });
