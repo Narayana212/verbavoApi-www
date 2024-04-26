@@ -1,58 +1,34 @@
-'use server'
+"use server"
 
-type APIError = {
-  error: string
-}
+import { put } from "@vercel/blob";
 
-type APISuccess = {
-  url: { url: string },
-  text: string
-}
 
-export const convertSpeech = async ({ message }: { message: Blob | null }) => {
+export const blobToUrl = async (message: Blob) => {
   try {
-
-    console.log(message)
-
-    if (!message) {
-      return;
-    }
-
     const formData = new FormData();
+    const filename = "file.mp3";
     const mp3File = new File([message], "audio.mp3", { type: "audio/mp3" });
     formData.append("file", mp3File, "audio.mp3");
-    const responsetranslateaudio = await fetch("https://translatethechat.vercel.app/api/upload", {
-      method: "POST",
-      body: formData,
+
+    const contentType = "audio/mp3";
+    const fileType = `.${contentType.split("/")[1]}`;
+
+    // construct final filename based on content-type if not provided
+    const finalName = filename.includes(fileType)
+      ? filename
+      : `${filename}${fileType}`;
+
+    const blob = await put(finalName, mp3File, {
+      contentType,
+      access: "public",
+
     });
+    console.log(blob.contentDisposition)
+    return blob.url
 
 
-    const audioUrl = await responsetranslateaudio.json();
+  } catch (error) {
 
-
-
-
-
-
-    const res = await fetch('https://verbavo.raavinarayana212.workers.dev/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url: audioUrl, lang: "hi" }),
-    })
-
-
-
-    const json = await res.json()
-
-    console.log(json)
-
-    if (!res.ok) {
-      const { error } = json as APIError
-      return { error }
-    }
-
-    return json as APISuccess
-  } catch (err) {
-    return { error: 'Something went wrong, please try again.' }
   }
+
 }
