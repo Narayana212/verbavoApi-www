@@ -1,37 +1,30 @@
+import { put } from '@vercel/blob';
+import { NextResponse } from 'next/server';
 
-import { put } from "@vercel/blob";
-import { NextResponse } from "next/server";
-
-
-export async function POST(req: Request) {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    return new Response(
-      "Missing BLOB_READ_WRITE_TOKEN. Don't forget to add that to your .env file.",
-      {
-        status: 401,
-      },
-    );
-  }
+export async function POST(request: Request): Promise<NextResponse> {
+  const { searchParams } = new URL(request.url);
+  const filename = searchParams.get('filename');
 
 
-  const form = await req.formData();
 
-  const file = form.get('file') as File;
-  const filename = req.headers.get("x-vercel-filename") || "file.mp3"; 
-  const contentType =  "audio/mp3"; 
-  const fileType = `.${contentType.split("/")[1]}`;
+  // ⚠️ The below code is for App Router Route Handlers only
 
-  // construct final filename based on content-type if not provided
-  const finalName = filename.includes(fileType)
-    ? filename
-    : `${filename}${fileType}`;
-
-  const blob = await put(finalName, file, {
-    contentType,
-    access: "public",
-
+  //@ts-ignore
+  const blob = await put(filename, request.body, {
+    access: 'public',
   });
-  console.log(blob.contentDisposition)
+
+  // Here's the code for Pages API Routes:
+  // const blob = await put(filename, request, {
+  //   access: 'public',
+  // });
 
   return NextResponse.json(blob);
 }
+
+// The next lines are required for Pages API Routes only
+// export const config = {
+//   api: {
+//     bodyParser: false,
+//   },
+// };

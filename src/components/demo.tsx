@@ -16,76 +16,64 @@ import {
 import { useRef } from "react";
 import { useEffect } from "react";
 
-
 type APIError = {
-  error: string
-}
+  error: string;
+};
 
 type APISuccess = {
-  url: { url: string },
-  text: string
-}
+  url: { url: string };
+  text: string;
+};
 
 const Demo = () => {
+  const [loading, setLoading] = useState(false);
 
-  const [loading,setLoading]=useState(false)
-
-  const [text,setText]=useState("");
-  const [url,setUrl]=useState("");
+  const [text, setText] = useState("");
+  const [url, setUrl] = useState("");
   const convertToSpeech = async ({ message }: { message: Blob | null }) => {
     try {
       setLoading(true);
-      if(!message){
+      if (!message) {
         return;
       }
-      
-      const formData = new FormData();
-      const mp3File = new File([message], "audio.mp3", { type: "audio/mp3" })
-      formData.append("file", mp3File, "audio.mp3");
-      const response = await fetch("/api/upload/", {
+
+      const mp3File = new File([message], "audio.mp3", { type: "audio/mp3" });
+
+      const response = await fetch(`/api/upload?filename=${mp3File.name}`, {
         method: "POST",
-        body: formData,
+        body: mp3File,
       });
 
-      let url=""
-      
+      let url = "";
+
       if (response.ok) {
         const resurl = await response.json();
-        url=resurl.url
-        
-       
+        url = resurl.url;
       } else {
-        console.log(response.statusText)
+        console.log(response.statusText);
       }
 
+      const res = await fetch("https://verbavo.raavinarayana212.workers.dev/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, lang: "hi" }),
+      });
+      const json = await res.json();
 
-      
-      const res = await fetch('https://verbavo.raavinarayana212.workers.dev/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url, lang: "hi" }),
-    })
-    const json = await res.json()
-    
-    if (!res.ok) {
-      const { error } = json as APIError
-     
-    }
-    console.log(json)
-    
-  
-    const {text }=json as APISuccess
-    setText(text)
-    setUrl(json.url.url)
+      if (!res.ok) {
+        const { error } = json as APIError;
+      }
+      console.log(json);
+
+      const { text } = json as APISuccess;
+      setText(text);
+      setUrl(json.url.url);
     } catch (error) {
-
-      console.log(error)
-    }finally{
-      setLoading(false)
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
-
-  
 
   const [message, setMessage] = useState<Blob | null>(null);
   const [mediaRecorder, setMediaRecorder] = useState<any>();
@@ -144,8 +132,6 @@ const Demo = () => {
     }
   }, []);
 
-
-
   return (
     <div className="flex flex-col gap-5 items-center">
       <div className="relative w-full rounded-xl mt-12 bg-gray-900/5 p-4 ring-1 ring-inset ring-gray-900/10 lg:rounded-2xl">
@@ -155,7 +141,9 @@ const Demo = () => {
               POST
             </span>
             <div className="h-[20px] w-px bg-zinc-300" />
-            <p className="break-all">https://verbavo.raavinarayana212.workers.dev</p>
+            <p className="break-all">
+              https://verbavo.raavinarayana212.workers.dev
+            </p>
           </div>
         </div>
         <div className="relative flex  justify-center  items-center gap-5 mt-6 h-full ">
@@ -185,10 +173,10 @@ const Demo = () => {
           {message && (
             <div className="flex items-center gap-x-3">
               <Button
-            disabled={loading}
+                disabled={loading}
                 className="h-9 w-full sm:w-fit"
                 onClick={() => {
-                  convertToSpeech({message})
+                  convertToSpeech({ message });
                 }}
               >
                 Convert Speech
@@ -198,21 +186,17 @@ const Demo = () => {
         </div>
 
         <div className="h-32 mt-4 rounded-lg border-2 border-dashed border-zinc-300 text-sm flex items-center justify-center">
-          {loading?(
+          {loading ? (
             <div className="flex flex-col items-center">
-              <Loader2 className="w-4 h-5 animate-spin"/>
+              <Loader2 className="w-4 h-5 animate-spin" />
               <p>Converting to Hindi</p>
-
             </div>
-          ):(
-            <div className="flex gap-y-3 flex-col items-center" >
-              <audio  controls src={url}/>
+          ) : (
+            <div className="flex gap-y-3 flex-col items-center">
+              <audio controls src={url} />
               <p>{text}</p>
-
-              </div>
-          )
-          }
-        
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -3,9 +3,11 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Check, Star } from "lucide-react";
 import Demo from "@/components/demo";
-import { Icons } from "@/components/icons";
+
 import YoutubePlayer from "@/components/youtube-player";
 import CodeSection from "@/components/code-section";
+import { Icons } from "@/components/icons";
+
 
 export default function Home() {
   return (
