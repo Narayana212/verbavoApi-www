@@ -15,6 +15,13 @@ import {
 } from "lucide-react";
 import { useRef } from "react";
 import { useEffect } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 type APIError = {
   error: string;
@@ -24,6 +31,49 @@ type APISuccess = {
   url: { url: string };
   text: string;
 };
+
+const languages = [
+  { name: "Arabic", val: "ar" },
+  { name: "Bulgarian", val: "bg" },
+  { name: "Catalan", val: "ca" },
+  { name: "Chinese", val: "zh-CN" },
+  { name: "Czech", val: "cs" },
+  { name: "Danish", val: "da" },
+  { name: "Dutch", val: "nl" },
+  { name: "English", val: "en" },
+  { name: "French", val: "fr" },
+  { name: "German", val: "de" },
+  { name: "Greek", val: "el" },
+  { name: "Hebrew", val: "iw" },
+  { name: "Hindi", val: "hi" },
+  { name: "Hungarian", val: "hi" },
+  { name: "Icelandic", val: "is" },
+  { name: "Indonesian", val: "id" },
+  { name: "Italian", val: "it" },
+  { name: "Japanese", val: "ja" },
+  { name: "Korean", val: "ko" },
+  { name: "Kannada", val: "kn" },
+  { name: "Latvian", val: "lv" },
+  { name: "Marathi", val: "mr" },
+  { name: "Norwegian", val: "no" },
+  { name: "Polish", val: "pl" },
+  { name: "Portuguese", val: "pt-PT" },
+  { name: "Romanian", val: "ro" },
+  { name: "Russian", val: "ru" },
+  { name: "Slovak", val: "sk" },
+  { name: "Swedish", val: "sv" },
+  { name: "Swahili", val: "sw" },
+  { name: "Spanish", val: "es" },
+  { name: "Slovenian", val: "sl" },
+  { name: "Turkish", val: "tr" },
+  { name: "Ukrainian", val: "uk" },
+  { name: "Vietnamese", val: "vi" },
+  { name: "Tamil", val: "ta" },
+  { name: "Telugu", val: "te" },
+  { name: "Thai", val: "th" },
+  { name: "Urdu", val: "ur" },
+  { name: "Welsh", val: "cy" },
+];
 
 const Demo = () => {
   const [loading, setLoading] = useState(false);
@@ -52,11 +102,12 @@ const Demo = () => {
       } else {
         console.log(response.statusText);
       }
+      let lang = languages.filter(l => l.name === value)[0].val
 
       const res = await fetch("https://verbavo.raavinarayana212.workers.dev/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url, lang: "hi" }),
+        body: JSON.stringify({ url, lang}),
       });
       const json = await res.json();
 
@@ -77,7 +128,7 @@ const Demo = () => {
 
   const [message, setMessage] = useState<Blob | null>(null);
   const [mediaRecorder, setMediaRecorder] = useState<any>();
-
+  const [value, setValue] = useState("English");
   // State to track whether recording is currently in progress
   const [recording, setRecording] = useState(false);
 
@@ -183,13 +234,30 @@ const Demo = () => {
               </Button>
             </div>
           )}
+
+          <Select
+            disabled={loading}
+            onValueChange={(value) => {setValue(value)}}
+            value={value}
+          >
+            <SelectTrigger className="w-[200px]">
+              <SelectValue placeholder="Select Language" />
+            </SelectTrigger>
+            <SelectContent>
+              {languages.map((language, index) => (
+                <SelectItem value={language.name} key={index}>
+                  {language.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="h-32 mt-4 rounded-lg border-2 border-dashed border-zinc-300 text-sm flex items-center justify-center">
           {loading ? (
             <div className="flex flex-col items-center">
               <Loader2 className="w-4 h-5 animate-spin" />
-              <p>Converting to Hindi</p>
+              <p>Converting to {value}</p>
             </div>
           ) : (
             <div className="flex gap-y-3 flex-col items-center">
