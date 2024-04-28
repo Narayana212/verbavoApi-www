@@ -198,7 +198,7 @@ const Demo = () => {
           </div>
         </div>
         <div className="relative flex  justify-center  items-center gap-5 mt-6 h-full ">
-          {!recording && (
+          {(!recording && !message) && (
             <Button
               onClick={startRecording}
               size={"icon"}
@@ -223,6 +223,11 @@ const Demo = () => {
 
           {message && (
             <div className="flex items-center gap-x-3">
+              <Button disabled={loading} variant={"secondary"}  className="flex items-center gap-x-2" onClick={()=>setMessage(null)}>
+              <span>Retry</span>
+               
+
+              </Button>
               <Button
                 disabled={loading}
                 className="h-9 w-full sm:w-fit"
