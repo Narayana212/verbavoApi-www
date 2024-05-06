@@ -5,12 +5,7 @@ import YouTube from 'react-youtube'
 const YoutubePlayer = () => {
   return (
     <div className=''>
-      <YouTube
-        videoId='l2nmWCKaR-U'
-        className='relative w-full aspect-video overflow-hidden rounded-xl' // defaults -> ''
-        iframeClassName='absolute inset-0 w-full h-full'
-        opts={{autoplay: 0, controls: 0}}
-      />
+      <video src="/demo.mp4"   controls className='relative w-full aspect-video overflow-hidden rounded-xl'></video>
     </div>
   )
 }

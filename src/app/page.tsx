@@ -133,7 +133,7 @@ export default function Home() {
               aria-hidden="true"
               className="absolute -left-52 top-1/4 z-10 select-none"
             >
-              <img alt="3-min-demo" src="/3mindemo.png" />
+              
             </div>
           </div>
 
