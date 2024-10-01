@@ -10,6 +10,10 @@ const codeBlock = `const res = await fetch('https://verbavo.raavinarayana212.wor
   body: JSON.stringify({ url,lang }),
 })`
 
+/**
+ * Renders a scrollable code section component
+ * @returns {JSX.Element} A ScrollArea component containing a Code component and a horizontal ScrollBar
+ */
 const CodeSection = () => {
   return (
     <ScrollArea className='relative'>
