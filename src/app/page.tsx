@@ -8,6 +8,10 @@ import YoutubePlayer from "@/components/youtube-player";
 import CodeSection from "@/components/code-section";
 import { Icons } from "@/components/icons";
 
+/**
+ * Renders the home page component of the Verbavo API website
+ * @returns {JSX.Element} The rendered home page component
+ */
 export default function Home() {
   return (
     <div className="bg-[#FCF3E4]  ">
