@@ -1,6 +1,11 @@
 import { put } from '@vercel/blob';
 import { NextResponse } from 'next/server';
 
+/**
+ * Handles POST requests to upload a file to storage
+ * @param {Request} request - The incoming HTTP request object
+ * @returns {Promise<NextResponse>} A promise that resolves to a NextResponse object containing the uploaded blob information
+ */
 export async function POST(request: Request): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
   const filename = searchParams.get('filename');
