@@ -12,6 +12,12 @@ export const metadata: Metadata = {
   description: "Convert speech from one language to another seamlessly with Verbavo API",
 };
 
+/**
+ * Root layout component for the application.
+ * @param {Object} props - The component props.
+ * @param {React.ReactNode} props.children - The child components to be rendered within the layout.
+ * @returns {React.JSX.Element} A React element representing the root HTML structure with providers, navbar, and child components.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

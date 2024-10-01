@@ -15,6 +15,14 @@ const SelectValue = SelectPrimitive.Value
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
+/**
+ * Renders a customizable select trigger component with a dropdown icon
+ * @param {Object} props - The component props
+ * @param {string} props.className - Additional CSS classes to apply to the trigger
+ * @param {React.ReactNode} props.children - The content to display inside the trigger
+ * @param {React.Ref} ref - Ref object for the select trigger
+ * @returns {JSX.Element} A styled select trigger component with dropdown icon
+ */
 >(({ className, children, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
@@ -27,6 +35,13 @@ const SelectTrigger = React.forwardRef<
     {children}
     <SelectPrimitive.Icon asChild>
       <ChevronDown className="h-4 w-4 opacity-50" />
+    /**
+     * Renders a scroll up button component for a Select primitive
+     * @param {Object} props - The component props
+     * @param {string} [props.className] - Additional CSS class names to apply to the button
+     * @param {React.Ref} ref - The ref to attach to the button element
+     * @returns {React.ReactElement} A ScrollUpButton component for a Select primitive
+     */
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ))
@@ -37,6 +52,13 @@ const SelectScrollUpButton = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.ScrollUpButton
+    /**
+     * Renders a custom scroll down button component for a select primitive.
+     * @param {Object} props - The component props.
+     * @param {string} [props.className] - Additional CSS class names to apply to the button.
+     * @param {React.Ref} ref - The ref to be forwarded to the underlying button element.
+     * @returns {React.ReactElement} A React component representing the scroll down button.
+     */
     ref={ref}
     className={cn(
       "flex cursor-default items-center justify-center py-1",
@@ -48,6 +70,15 @@ const SelectScrollUpButton = React.forwardRef<
   </SelectPrimitive.ScrollUpButton>
 ))
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
+/**
+ * Renders a custom Select component with portal, content, and viewport
+ * @param {Object} props - The component props
+ * @param {string} props.className - Additional CSS classes for the content
+ * @param {React.ReactNode} props.children - The child elements to render inside the viewport
+ * @param {string} [props.position="popper"] - The position strategy for the select content
+ * @param {React.Ref} ref - Ref object for the select content
+ * @returns {React.ReactElement} A Select component with customized styling and positioning
+ */
 
 const SelectScrollDownButton = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.ScrollDownButton>,
@@ -80,6 +111,21 @@ const SelectContent = React.forwardRef<
           "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
         className
       )}
+      /**
+       * A custom label component for a Select element
+       * @param {Object} props - The props object
+       /**
+        * Renders a customizable select item component with a checkbox indicator.
+        * @param {Object} props - The component props.
+        * @param {string} [props.className] - Additional CSS class names for the item.
+        * @param {React.ReactNode} props.children - The content to be displayed within the item.
+        * @param {React.Ref} ref - The ref to be forwarded to the underlying SelectPrimitive.Item.
+        * @returns {React.ReactElement} A styled select item with a checkbox indicator.
+        */
+       * @param {string} [props.className] - Additional CSS class names to apply to the label
+       * @param {React.Ref} ref - Ref object for the label element
+       * @returns {React.ReactElement} A styled Select label component
+       */
       position={position}
       {...props}
     >
@@ -108,6 +154,13 @@ const SelectLabel = React.forwardRef<
     className={cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className)}
     {...props}
   />
+/**
+ * A React component that renders a separator for a Select component.
+ * @param {Object} props - The properties passed to the component.
+ * @param {string} [props.className] - Additional CSS classes to apply to the separator.
+ * @param {React.Ref} ref - A ref object to attach to the separator element.
+ * @returns {React.Element} A styled separator element for use within a Select component.
+ */
 ))
 SelectLabel.displayName = SelectPrimitive.Label.displayName
 

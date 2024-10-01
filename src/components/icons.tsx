@@ -1,6 +1,11 @@
 import { LucideProps } from 'lucide-react'
 
 export const Icons = {
+  /**
+   * Renders an SVG icon for Upstash
+   * @param {LucideProps} props - The properties to be spread on the SVG element
+   * @returns {JSX.Element} An SVG element representing the Upstash logo
+   */
   upstash: (props: LucideProps) => (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -42,6 +47,11 @@ export const Icons = {
       </defs>
     </svg>
   ),
+  /**
+   * Renders an arrow SVG component with custom styling and animation
+   * @param {LucideProps} props - The props to be spread on the SVG element
+   * @returns {JSX.Element} An SVG element representing an animated arrow
+   */
   arrow: (props: LucideProps) => (
     <svg {...props} viewBox='145.281 153.683 762.1 455.8'>
       <g
@@ -69,6 +79,11 @@ export const Icons = {
       </defs>
     </svg>
   ),
+  /**
+   * Renders a poop emoji SVG icon
+   * @param {LucideProps} props - The properties to be spread on the SVG element
+   * @returns {JSX.Element} An SVG element representing a poop emoji
+   */
   poop: (props: LucideProps) => (
     <svg {...props} viewBox='0 0 58 56'>
       <g id='Page-1' fill='none' fill-rule='evenodd'>
