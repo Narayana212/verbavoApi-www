@@ -2,6 +2,10 @@
 
 import YouTube from 'react-youtube'
 
+/**
+ * Renders a YouTube-style video player component
+ * @returns {JSX.Element} A div containing a video element with controls
+ */
 const YoutubePlayer = () => {
   return (
     <div className=''>
