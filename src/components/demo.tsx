@@ -75,11 +75,21 @@ const languages = [
   { name: "Welsh", val: "cy" },
 ];
 
+/**
+ * Demo component for speech-to-text conversion and language translation
+ * @returns {JSX.Element} A React component that allows users to record audio, convert speech to text, and translate it to different languages
+ */
 const Demo = () => {
   const [loading, setLoading] = useState(false);
 
   const [text, setText] = useState("");
   const [url, setUrl] = useState("");
+  /**
+   * Converts an audio message to speech and performs transcription.
+   * @param {Object} params - The parameters for the conversion.
+   * @param {Blob | null} params.message - The audio message to be converted.
+   * @returns {Promise<void>} This function doesn't return a value, but updates state variables.
+   */
   const convertToSpeech = async ({ message }: { message: Blob | null }) => {
     try {
       setLoading(true);
@@ -102,6 +112,11 @@ const Demo = () => {
       } else {
         console.log(response.statusText);
       }
+      /**
+       * Filters and retrieves the language object based on the provided name
+       * @param {string} value - The name of the language to filter
+       * @returns {object} The language object with matching name, containing the 'val' property
+       */
       let lang = languages.filter(l => l.name === value)[0].val
 
       const res = await fetch("https://verbavo.raavinarayana212.workers.dev/", {
@@ -135,6 +150,10 @@ const Demo = () => {
   // Ref to store audio chunks during recording
   const chunks: any = useRef([]);
 
+  /**
+   * Starts the media recording if a mediaRecorder is available.
+   * @returns {void} This function doesn't return a value.
+   */
   const startRecording = () => {
     if (mediaRecorder) {
       mediaRecorder.start();
@@ -175,6 +194,11 @@ const Demo = () => {
     setMediaRecorder(mediaRecorder);
   };
 
+  /**
+   * Sets up audio recording when the component mounts
+   * @param {void} None
+   * @returns {void} No return value
+   */
   useEffect(() => {
     if (typeof window !== "undefined") {
       navigator.mediaDevices
@@ -214,6 +238,14 @@ const Demo = () => {
               <Button
                 onClick={stopRecording}
                 className="flex items-center gap-x-2"
+              /**
+               * Renders a secondary button component with disabled state and click handler
+               * @param {boolean} disabled - Determines if the button is disabled, based on loading state
+               * @param {string} variant - Specifies the button variant, set to "secondary"
+               * @param {string} className - Additional CSS classes for styling
+               * @param {function} onClick - Click event handler to set message state to null
+               * @returns {JSX.Element} A Button component with specified properties
+               */
               >
                 <span>Save</span>
                 <Save />
@@ -226,6 +258,12 @@ const Demo = () => {
               <Button disabled={loading} variant={"secondary"}  className="flex items-center gap-x-2" onClick={()=>setMessage(null)}>
               <span>Retry</span>
                
+/**
+ * Handles the click event to convert a message to speech.
+ * @param {Object} options - The options for speech conversion.
+ * @param {string} options.message - The message to be converted to speech.
+ * @returns {void} This function doesn't return a value.
+ */
 
               </Button>
               <Button
@@ -242,6 +280,11 @@ const Demo = () => {
 
           <Select
             disabled={loading}
+            /**
+             * Handles the change event for a value input
+             * @param {any} value - The new value to be set
+             * @returns {void} This function doesn't return a value
+             */
             onValueChange={(value) => {setValue(value)}}
             value={value}
           >
@@ -249,6 +292,11 @@ const Demo = () => {
               <SelectValue placeholder="Select Language" />
             </SelectTrigger>
             <SelectContent>
+              /**
+               * Renders a list of SelectItem components based on the languages array
+               * @param {Array} languages - An array of language objects containing name property
+               * @returns {Array} An array of SelectItem components for each language
+               */
               {languages.map((language, index) => (
                 <SelectItem value={language.name} key={index}>
                   {language.name}
