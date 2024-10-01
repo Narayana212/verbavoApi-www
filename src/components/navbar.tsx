@@ -2,6 +2,10 @@ import { Heart } from 'lucide-react'
 import Link from 'next/link'
 import { buttonVariants } from './ui/button'
 
+/**
+ * Renders a navigation bar component with a logo and navigation links.
+ * @returns {JSX.Element} A sticky navigation bar with a logo and links to Video Demo and API sections.
+ */
 const Navbar = () => {
   return (
     <div className='sticky inset-x-0 top-0 z-30 w-full transition-all border-b border-gray-200 bg-[#FCF3E4]/75 backdrop-blur-lg'>
